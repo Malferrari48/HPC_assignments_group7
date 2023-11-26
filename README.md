@@ -32,21 +32,21 @@ This folder contains the sources of the first assignment:
 
 ## How to compile
 Into each directory run this command:
-```
+``` bash
 make EXT_CFLAGS="-DPOLYBENCH_TIME -DPOLYBENCH_DUMP_ARRAYS" clean all run
 ```
 You can also specify the dataset size adding the flag *DATASET* and writing one of the listed in the header file
 `/dynprog/dynprog.h`, for example:
-```
+``` bash
 make EXT_CFLAGS="-DLARGE_DATASET -DPOLYBENCH_TIME -DPOLYBENCH_DUMP_ARRAYS" clean all run
 ```
 Alternatively, if you want to use datasets not present in the header file, you can replace the flag *DATASET* 
 whith the following flags setted with numbers of your interest:
-```
+``` bash
 -DLENGTH=10000 -DTSTEPS=20
 ```
 Before running this commands, to compile `gpu_dynprog.c`, you must run
-```
+``` bash
 module load clang/11.0.0 cuda/10.0
 ```
 to load the cuda library.
