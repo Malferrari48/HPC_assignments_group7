@@ -47,9 +47,9 @@ whith the following flags setted with numbers of your interest:
 ```
 It is also possible to specify the number of threads with:
 ``` bash
-make EXT_CFLAGS="-DNTHREADS=4" 
+"-DNTHREADS=4" 
 ```
-but in our case having a four thread machine, it was embedded in the code
+but in our case having a four threads machine, it was embedded in the code.
 
 Before running those commands, to compile `gpu_dynprog.c`, you must run
 ``` bash
