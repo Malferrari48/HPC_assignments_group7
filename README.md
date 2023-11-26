@@ -15,7 +15,7 @@ The goal is to minimize the execution time of the DynProg solver of the Polybenc
 
 ## Folders in the repository
 * `/dynprog` :
-    riginal version of the file assigned
+    original version of the file assigned
 * `/fast_dynprog` :
     the fastest version of the written dynprog.
     It has been uploaded for completeness, however it has an error due to the [precision of floating point type](https://stackoverflow.com/questions/48088766/c-double-multiplication-have-different-result-when-order-of-variables-is-chang).
