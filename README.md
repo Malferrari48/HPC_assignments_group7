@@ -51,7 +51,7 @@ It is also possible to specify the number of threads with:
 ```
 but in our case having a four threads machine, it was embedded in the code.
 
-Before running those commands, to compile `gpu_dynprog.c`, you must run
+Before running theese commands, to compile `gpu_dynprog.c`, you must run
 ``` bash
 module load clang/11.0.0 cuda/10.0
 ```
