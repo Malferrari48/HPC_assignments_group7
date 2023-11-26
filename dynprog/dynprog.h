@@ -25,13 +25,13 @@
 #  endif
 
 #  ifdef LARGE_DATASET
-#   define TSTEPS 1000
-#   define LENGTH 500
+#   define TSTEPS 400
+#   define LENGTH 50
 #  endif
 
 #  ifdef EXTRALARGE_DATASET
-#   define TSTEPS 10000
-#   define LENGTH 500
+#   define TSTEPS 8000
+#   define LENGTH 600
 #  endif
 # endif /* !N */
 
@@ -39,8 +39,8 @@
 # define _PB_LENGTH POLYBENCH_LOOP_BOUND(LENGTH,length)
 
 # ifndef DATA_TYPE
-#  define DATA_TYPE int
-#  define DATA_PRINTF_MODIFIER "%d "
+#  define DATA_TYPE double
+#  define DATA_PRINTF_MODIFIER "%.2f "
 # endif
 
 
