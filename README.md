@@ -45,13 +45,13 @@ whith the following flags setted with numbers of your interest:
 ``` bash
 -DLENGTH=10000 -DTSTEPS=20
 ```
-It is also possible to specify the number of threads with:
+It is also possible to specify the number of threads with the following flag:
 ``` bash
 "-DNTHREADS=4" 
 ```
-but in our case having a four threads machine, it was embedded in the code.
+but in our case having a four threads machine, it was defined in the code.
 
-Before running theese commands, to compile `gpu_dynprog.c`, you must run
+Before running these commands, to compile `gpu_dynprog.c`, you must run
 ``` bash
 module load clang/11.0.0 cuda/10.0
 ```
