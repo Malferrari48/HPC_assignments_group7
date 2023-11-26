@@ -25,13 +25,13 @@
 #  endif
 
 #  ifdef LARGE_DATASET
-#   define TSTEPS 400
-#   define LENGTH 50
+#   define TSTEPS 1000
+#   define LENGTH 500
 #  endif
 
 #  ifdef EXTRALARGE_DATASET
-#   define TSTEPS 8000
-#   define LENGTH 600
+#   define TSTEPS 10000
+#   define LENGTH 500
 #  endif
 # endif /* !N */
 
@@ -40,7 +40,7 @@
 
 # ifndef DATA_TYPE
 #  define DATA_TYPE double
-#  define DATA_PRINTF_MODIFIER "%.2f "
+#  define DATA_PRINTF_MODIFIER "%2f "
 # endif
 
 
