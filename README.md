@@ -45,13 +45,8 @@ whith the following flags setted with numbers of your interest:
 ```
 -DLENGTH=10000 -DTSTEPS=20
 ```
-Remember to write before
+Before running this commands, to compile `gpu_dynprog.c`, you must run
 ```
 module load clang/11.0.0 cuda/10.0
 ```
 to load the cuda library.
-
-* Alternatively, you should use datasets not present in the header file replacing the flag *DATASET* whith the following:
-```
--DLENGTH=10000 -DTSTEPS=20
-```
