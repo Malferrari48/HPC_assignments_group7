@@ -1,0 +1,29 @@
+INCPATHS = -I$(UTIL_DIR)
+
+PWD = $(shell basename `pwd`)
+SRCS += $(wildcard *.c)
+EXE=$(basename $(SRCS)).exe
+HEADERS = $(wildcard *.h)
+
+CC=gcc
+LD=ld
+OBJDUMP=objdump
+
+OPT=-Ofast -g -fopenmp
+CFLAGS=$(OPT) -I. $(EXT_CFLAGS)
+LDFLAGS=-lm $(EXT_LDFLAGS)
+
+.PHONY: all exe clean
+
+all : exe
+
+exe : $(EXE)
+
+$(EXE) : $(SRCS)
+	$(CC) $(CFLAGS) $(INCPATHS) $^ -o $@ $(LDFLAGS)
+
+clean :
+	-rm -vf -vf $(EXE) *~
+
+run: $(EXE)
+	./$(EXE)
