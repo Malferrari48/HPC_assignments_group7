@@ -3,12 +3,26 @@
 ## Authors
 Francesco Malferrari, Gianluca Siligardi and Andrea Somenzi
 
-## Files in the repository
-* dynprog_original.c --> Original file
-* dynprog_rewritten.c --> File rewritten and optimized by us
-* dynprog_OpenMP --> File optimized using OpenMP
-* dynprog_accelerator --> File optimized using accelerator
-* Makefile
+## Description
+This is the exam project for UniMORE High Performance Computing course.
+The goal is to minimize the execution time of the DynProg solver of the Polybench C library through:
+* Profiling and bottleneck research;
+* Code rewriting;
+* Parallelization with
+    * OpenMP
+    * CUDA
+    * HLS
+
+## Folders in the repository
+* /dynprog :
+    riginal version of the file assigned;
+* /fast_dynprog :
+    the fastest version of the written dynprog.
+    It has been uploaded for completeness, however it has an error due to the [precision of floating point type](https://stackoverflow.com/questions/48088766/c-double-multiplication-have-different-result-when-order-of-variables-is-chang).
+* /OpenMP
+
+## OpenMP folder
+
 
 ## How to compile
 * To compile the accelerator file you have to write this command:
