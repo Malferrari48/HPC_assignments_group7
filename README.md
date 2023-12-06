@@ -1,7 +1,7 @@
 # HPC OpenMP assignment Group 7
 
 ## Authors
-Francesco Malferrari, Gianluca Siligardi and Andrea Somenziii
+Francesco Malferrari, Gianluca Siligardi and Andrea Somenzi
 
 ## Description
 This is the exam project for UniMORE High Performance Computing course.
