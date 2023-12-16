@@ -14,7 +14,7 @@ CXX=g++
 OPT:=-O3 -g
 NVOPT:=-Xcompiler -fopenmp -lineinfo -arch=sm_53 --ptxas-options=-v --use_fast_math `pkg-config --cflags --libs opencv4`
 
-CXXFLAGS:=$(OPT) -I. $(EXT_CXXFLAGS)
+CXXFLAGS:=$(OPT) -I. $(EXT_CFLAGS)
 LDFLAGS:=-lm -lcudart $(EXT_LDFLAGS)
 
 NVCFLAGS:=$(CXXFLAGS) $(NVOPT)
