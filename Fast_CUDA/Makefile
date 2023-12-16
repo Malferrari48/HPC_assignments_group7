@@ -2,30 +2,27 @@ ifndef CUDA_HOME
 CUDA_HOME:=/usr/local/cuda
 endif
 
-INCPATHS = -I$(UTIL_DIR)
+ifndef EXERCISE
+EXERCISE=cuda_dynprog.cu
+endif
 
-FILE ?= rew_cuda_dynprog.cu
-
-BUILD_DIR ?= ./build
+BUILD_DIR ?= ./
 
 NVCC=$(CUDA_HOME)/bin/nvcc
-CXX=gcc
+CXX=g++
 
-OPT:=-O2 -g
-NVOPT:=-Xcompiler -fopenmp -lineinfo -arch=sm_53 --ptxas-options=-v --use_fast_math
+OPT:=-O3 -g
+NVOPT:=-Xcompiler -fopenmp -lineinfo -arch=sm_53 --ptxas-options=-v --use_fast_math `pkg-config --cflags --libs opencv4`
 
-CXXFLAGS:=$(OPT) $(OMP) -I. -I../PolybenchC $(EXT_CFLAGS)
+CXXFLAGS:=$(OPT) -I. $(EXT_CXXFLAGS)
 LDFLAGS:=-lm -lcudart $(EXT_LDFLAGS)
 
 NVCFLAGS:=$(CXXFLAGS) $(NVOPT)
 NVLDFLAGS:=$(LDFLAGS) -lgomp
 
-GCC_CXXFLAGS:=$(CXXFLAGS) -fopenmp
-
 SRCS:= ../PolybenchC/polybench.c
-
-OBJS := $(SRCS:%=$(BUILD_DIR)/%.o) $(FILE:%=$(BUILD_DIR)/%.o)
-EXE=$(basename $(FILE))
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o) $(EXERCISE:%=$(BUILD_DIR)/%.o)
+EXE=$(EXERCISE:.cu=.exe)
 
 $(EXE):	$(OBJS)
 	$(MKDIR_P) $(dir $@)
@@ -37,11 +34,11 @@ $(BUILD_DIR)/%.cu.o: %.cu
 
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(GCC_CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.c.o: %.c
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(GCC_CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 all: $(EXE)
 
@@ -50,9 +47,9 @@ run: $(EXE)
 	./$(EXE)
 
 profile: $(EXE)
-	sudo LD_LIBRARY_PATH=$(CUDA_HOME)/lib:/usr/ext/lib:${LD_LIBRARY_PATH} LIBRARY_PATH=/usr/ext/lib:${LIBRARY_PATH} nvprof ./$(EXE)
+	sudo LD_LIBRARY_PATH=$(CUDA_HOME)/lib:/usr/ext/lib:${LD_LIBRARY_PATH} LIBRARY_PATH=/usr/ext/lib:${LIBRARY_PATH} $(CUDA_HOME)/bin/nvprof ./$(EXE)
 
 clean:
-	-rm -fr $(BUILD_DIR) *.exe *.out *~
+	-rm -f $(BUILD_DIR)/*.exe $(BUILD_DIR)/*.o
 
 MKDIR_P ?= mkdir -p
