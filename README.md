@@ -68,9 +68,9 @@ to load the cuda library.
 
 Attention: for the cuda program you don't have to insert in the command the flags 
 ``` bash
-    -DPOLYBENCH_TIME -DPOLYBENCH_DUMP_ARRAYS
+-DPOLYBENCH_TIME -DPOLYBENCH_DUMP_ARRAYS
 ```
 so the complete command is for example:
 ``` bash
-    make EXT_CFLAGS="-DLENGTH=250000 -DTSTEPS=1" all run clean
+make EXT_CFLAGS="-DLENGTH=250000 -DTSTEPS=1" all run clean
 ```
