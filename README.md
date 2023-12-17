@@ -66,7 +66,7 @@ module load clang/11.0.0 cuda/10.0
 ```
 to load the cuda library.
 
-Attention: for the Cuda program the following command flags could be avoided
+Attention: for the Cuda program the following command flags should be avoided
 ``` bash
 -DPOLYBENCH_TIME -DPOLYBENCH_DUMP_ARRAYS
 ```
