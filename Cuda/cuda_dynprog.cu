@@ -209,6 +209,8 @@ int main(int argc, char *argv[]) {
   
   out = h_c[length - 1];
 
+  out = out * TSTEPS;
+
   end = clock();
 
   printf("CUDA\nElapsed time: %f seconds\nResult: %.2f\n\n", ((double) (end - start)) / CLOCKS_PER_SEC, out);
