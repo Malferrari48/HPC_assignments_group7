@@ -39,31 +39,31 @@ static void print_array(DATA_TYPE out)
   fprintf(stderr, "\n");
 }
 
-static void kernel_dynprog(int tsteps, int length,
-                           DATA_TYPE POLYBENCH_1D(c, LENGTH, length),
-                           DATA_TYPE POLYBENCH_1D(W, LENGTH, length),
-                           DATA_TYPE sum_c,
-                           DATA_TYPE *out)
-{
-
-  DATA_TYPE out_l = 0;
-  sum_c = 0;
-
-  for (int i = 1; i < _PB_LENGTH; i++)
-  {
-    #pragma omp parallel for num_threads(NTHREADS) reduction(+:sum_c)
-    for (int j = 1; j < i; j++)
-      sum_c += c[j];
-    c[i] = sum_c + W[i];
-    sum_c = 0;
-  }
-
-  for (int k = 0; k < _PB_TSTEPS; k++)
-    out_l += c[_PB_LENGTH - 1];
-  
-  *out = out_l;
-
-}
+//static void kernel_dynprog(int tsteps, int length,
+//                           DATA_TYPE POLYBENCH_1D(c, LENGTH, length),
+//                           DATA_TYPE POLYBENCH_1D(W, LENGTH, length),
+//                           DATA_TYPE sum_c,
+//                           DATA_TYPE *out)
+//{
+//
+//  DATA_TYPE out_l = 0;
+//  sum_c = 0;
+//
+//  for (int i = 1; i < _PB_LENGTH; i++)
+//  {
+//    #pragma omp parallel for num_threads(NTHREADS) reduction(+:sum_c)
+//    for (int j = 1; j < i; j++)
+//      sum_c += c[j];
+//    c[i] = sum_c + W[i];
+//    sum_c = 0;
+//  }
+//
+//  for (int k = 0; k < _PB_TSTEPS; k++)
+//    out_l += c[_PB_LENGTH - 1];
+//  
+//  *out = out_l;
+//
+//}
 
 __device__ void warpReduce(volatile double* sdata, int tid) {
   sdata[tid] += sdata[tid + 32];
@@ -123,30 +123,30 @@ int main(int argc, char *argv[]) {
   /* OPENMP PARALLELIZATION */
 
   DATA_TYPE out;
-  DATA_TYPE sum_c = 0;
-  POLYBENCH_1D_ARRAY_DECL(c, DATA_TYPE, LENGTH, length);
-  POLYBENCH_1D_ARRAY_DECL(W, DATA_TYPE, LENGTH, length);
-
-  /* Initialize array(s). */
-  init_array(length, POLYBENCH_ARRAY(c), POLYBENCH_ARRAY(W));
-
-  clock_t start, end;
-
-  start = clock();
-
-  /* Run kernel. */
-  kernel_dynprog(tsteps, length,
-                 POLYBENCH_ARRAY(c),
-                 POLYBENCH_ARRAY(W),
-                 sum_c,
-                 &out);
-
-  end = clock();
-
-  printf("OPENMP\nElapsed time: %f seconds\nResult: %.2f\n\n", ((double) (end - start)) / CLOCKS_PER_SEC, out);
-
-  POLYBENCH_FREE_ARRAY(c);
-  POLYBENCH_FREE_ARRAY(W);
+//  DATA_TYPE sum_c = 0;
+//  POLYBENCH_1D_ARRAY_DECL(c, DATA_TYPE, LENGTH, length);
+//  POLYBENCH_1D_ARRAY_DECL(W, DATA_TYPE, LENGTH, length);
+//
+//  /* Initialize array(s). */
+//  init_array(length, POLYBENCH_ARRAY(c), POLYBENCH_ARRAY(W));
+//
+    clock_t start, end;
+//
+//  start = clock();
+//
+//  /* Run kernel. */
+//  kernel_dynprog(tsteps, length,
+//                 POLYBENCH_ARRAY(c),
+//                 POLYBENCH_ARRAY(W),
+//                 sum_c,
+//                 &out);
+//
+//  end = clock();
+//
+//  printf("OPENMP\nElapsed time: %f seconds\nResult: %.2f\n\n", ((double) (end - start)) / CLOCKS_PER_SEC, out);
+//
+//  POLYBENCH_FREE_ARRAY(c);
+//  POLYBENCH_FREE_ARRAY(W);
 
   /* CUDA PARALLELIZATION */
 
@@ -207,9 +207,10 @@ int main(int argc, char *argv[]) {
 
   cudaMemcpy(h_c, d_c, length * sizeof(DATA_TYPE), cudaMemcpyDeviceToHost);
   
-  out = h_c[length - 1];
+  for(int k=0; k<tsteps; k++)
+    out += h_c[length - 1];
 
-  out = out * TSTEPS;
+  //out = out * TSTEPS;
 
   end = clock();
 
