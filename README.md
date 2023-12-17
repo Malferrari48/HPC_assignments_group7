@@ -1,7 +1,7 @@
 # HPC OpenMP assignment Group 7
 
 ## Authors
-Francesco Malferrari, Gianluca Siligardi and Andrea Somenzi
+Francesco Malferrari (193103), Gianluca Siligardi () and Andrea Somenzi (232254)
 
 ## Description
 This is the exam project for UniMORE High Performance Computing course.
@@ -20,6 +20,7 @@ The goal is to minimize the execution time of the DynProg solver of the Polybenc
     the fastest version of the written dynprog.
     It has been uploaded for completeness, however it has an error due to the [precision of floating point type](https://stackoverflow.com/questions/48088766/c-double-multiplication-have-different-result-when-order-of-variables-is-chang).
 * `/OpenMP`
+* `/Cuda`
 
 ## OpenMP folder
 This folder contains the sources of the first assignment:
@@ -29,6 +30,14 @@ This folder contains the sources of the first assignment:
 
 ### Visuals
 `/OpenMP` folder contains also the presentation of the results of the first assignment.
+
+## Cuda folder
+This folder contains the sources of the second assignment:
+* `Makefile`: the Makefile for .cu files
+* `cuda_dynprog.cu`: the CUDA optimization of the rewritten version of `dynprog.c`
+
+### Visuals
+`/Cuda` folder contains also the presentation of the results of the second assignment.
 
 ## How to compile
 Into each directory run this command:
