@@ -66,11 +66,11 @@ module load clang/11.0.0 cuda/10.0
 ```
 to load the cuda library.
 
-Attention: for the cuda program you don't have to insert in the command the flags 
+Attention: for the Cuda program the following command flags could be avoided
 ``` bash
 -DPOLYBENCH_TIME -DPOLYBENCH_DUMP_ARRAYS
 ```
-so the complete command is for example:
+so the complete command is, for example:
 ``` bash
 make EXT_CFLAGS="-DLENGTH=250000 -DTSTEPS=1" all run clean
 ```
