@@ -65,12 +65,3 @@ Before running these commands, to compile `gpu_dynprog.c`, you must run
 module load clang/11.0.0 cuda/10.0
 ```
 to load the cuda library.
-
-Attention: for the Cuda program the following command flags should be avoided
-``` bash
--DPOLYBENCH_TIME -DPOLYBENCH_DUMP_ARRAYS
-```
-so the complete command is, for example:
-``` bash
-make EXT_CFLAGS="-DLENGTH=250000 -DTSTEPS=1" all run clean
-```
