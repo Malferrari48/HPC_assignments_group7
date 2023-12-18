@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
 //  /* Initialize array(s). */
 //  init_array(length, POLYBENCH_ARRAY(c), POLYBENCH_ARRAY(W));
 //
-    clock_t start, end;
+//  clock_t start, end;
 //
 //  start = clock();
 //
@@ -167,7 +167,8 @@ int main(int argc, char *argv[]) {
   cudaMalloc((void**)&d_pout2_l, numBlocks * sizeof(DATA_TYPE));
   
   /* Start timer. */
-  start = clock();
+//  start = clock();
+  polybench_start_instruments;
 
   cudaMemcpy(d_c, h_c, length * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
   cudaMemcpy(d_W, h_W, length * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
@@ -212,9 +213,8 @@ int main(int argc, char *argv[]) {
 
   //out = out * TSTEPS;
 
-  end = clock();
-
-  printf("CUDA\nElapsed time: %f seconds\nResult: %.2f\n\n", ((double) (end - start)) / CLOCKS_PER_SEC, out);
+//  end = clock();
+  polybench_stop_instruments;
   
   /* Stop and print timer. */
   polybench_print_instruments;
