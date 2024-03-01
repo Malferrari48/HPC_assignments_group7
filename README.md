@@ -11,7 +11,6 @@ The goal is to minimize the execution time of the DynProg solver of the Polybenc
 * Parallelization with
     * OpenMP
     * CUDA
-    * HLS
 
 ## Folders in the repository
 * `/dynprog` :
